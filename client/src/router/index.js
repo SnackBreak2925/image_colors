@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Ping from '@/components/Ping';
+import Upload from '@/components/Upload';
 
 Vue.use(Router);
 
@@ -8,8 +8,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Ping',
-      component: Ping,
+      name: 'Upload',
+      component: Upload,
     },
   ],
 });
