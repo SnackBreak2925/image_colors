@@ -1,6 +1,4 @@
 import pandas as pd
-import matplotlib.pyplot as plt
-import matplotlib.patches as patches
 import extcolors
 from colormap import rgb2hex
 from PIL import Image
@@ -38,36 +36,6 @@ def main():
     colors_x = extcolors.extract_from_path(img_url, tolerance=12, limit=12)
     df_color = ColorsInHex(colors_x)
     print(df_color)
-
-    # чтоб палетку составить
-    list_color = list(df_color['c_code'])
-    # create background color
-    fig, ax = plt.subplots(figsize=(192, 108), dpi=10)
-    fig.set_facecolor('white')
-    plt.savefig('bg.png')
-    plt.close(fig)
-
-    # create color palette
-    bg = plt.imread('bg.png')
-    fig = plt.figure(figsize=(90, 90), dpi=10)
-    ax = fig.add_subplot(1, 1, 1)
-
-    x_posi, y_posi, y_posi2 = 320, 25, 25
-    for c in list_color:
-        if list_color.index(c) <= 5:
-            y_posi += 125
-            rect = patches.Rectangle((x_posi, y_posi), 290, 115, facecolor=c)
-            ax.add_patch(rect)
-            ax.text(x=x_posi + 360, y=y_posi + 80, s=c, fontdict={'fontsize': 150})
-        else:
-            y_posi2 += 125
-            rect = patches.Rectangle((x_posi + 800, y_posi2), 290, 115, facecolor=c)
-            ax.add_artist(rect)
-            ax.text(x=x_posi + 1160, y=y_posi2 + 80, s=c, fontdict={'fontsize': 150})
-
-    ax.axis('off')
-    plt.imshow(bg)
-    plt.show()
 
 
 if __name__ == '__main__':
