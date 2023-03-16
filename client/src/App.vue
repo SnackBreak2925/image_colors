@@ -11,6 +11,10 @@ export default {
 </script>
 
 <style>
+@font-face {
+  font-family: 'fewriter';
+  src: url('~@/assets/fonts/fewriter.ttf');
+}
 #app {
   margin: 0;
   background-image: url('~@/assets/background.png');

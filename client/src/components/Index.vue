@@ -1,16 +1,30 @@
 <template>
-  <div class="container">
-    <upload />
+  <div>
+    <header>
+      <appheader />
+    </header>
+    <div class="container">
+      <upload />
+    </div>
   </div>
 </template>
 
 <script>
-// eslint-disable-next-line import/extensions
 import Upload from './Upload.vue';
+import Header from './Header.vue';
 
 export default {
+  name: 'Index',
   components: {
+    appheader: Header,
     upload: Upload,
   },
 };
 </script>
+
+<style>
+.container {
+  margin-top: 30px;
+  overflow: auto;
+}
+</style>
