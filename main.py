@@ -3,6 +3,17 @@ import extcolors
 from colormap import rgb2hex
 from PIL import Image
 
+
+def Handler(img,input_name):
+    output_width = 800
+    wpercent = (output_width / float(img.size[0]))
+    hsize = int((float(img.size[1]) * float(wpercent)))
+    img = img.resize((output_width, hsize), Image.Resampling.LANCZOS)
+    # в jpg из png
+    rgb_im=img.convert('RGB')
+    resize_name = 'resize_' + input_name# новое имя: resize+старое имя
+    return rgb_im,resize_name
+
 def ColorsInHex(input):
     colors_pre_list = str(input).replace('([(', '').split(', (')[0:-1]
     df_rgb = [i.split('), ')[0] + ')' for i in colors_pre_list]
@@ -17,26 +28,22 @@ def ColorsInHex(input):
 
 
 def main():
+    # сколько цветов найти на картинке. Можно дать пользователю выбирать от 1 до 15
+    KolColor=11
+
     # сайт, откуда брала https: // towardsdatascience.com / image - color - extraction -with-python - in -4 - steps - 8d9370d9216e
     # именно png, потому что jpg не поддерживает отсутствие цвета (белого короче нет)
-    input_name = "dog1.png"
-    output_width = 800  # если вдруг картинка слишком большая, обрезаем ее.
-    # Вообще проверку тут запихнуть (вдруг картинка уже маленькая)
+    input_name = "dog.jpg"
     img = Image.open(input_name)
-    wpercent = (output_width / float(img.size[0]))
-    hsize = int((float(img.size[1]) * float(wpercent)))
-    img = img.resize((output_width, hsize), Image.Resampling.LANCZOS)
-    # сохраняем обрезанную картинку
-    resize_name = 'resize_' + input_name  # новое имя: resize+старое имя
+    img,resize_name = Handler(img,input_name)
     img.save(resize_name)  # сохраняем туда же
 
     # цвета из картинки извлекаем extcolors.extract_from_path(img_url, tolerance=12, limit=12)
     # tolerance- группировка по цветам(0-не группировать,100-слить все в 1 цвет), limit-сколько цветов забираем(можно убрать)
     img_url = resize_name
-    colors_x = extcolors.extract_from_path(img_url, tolerance=12, limit=12)
+    colors_x = extcolors.extract_from_path(img_url, tolerance=10,limit=KolColor)
     df_color = ColorsInHex(colors_x)
     print(df_color)
-
 
 if __name__ == '__main__':
     main()
