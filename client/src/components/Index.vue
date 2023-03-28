@@ -2,10 +2,13 @@
   <div>
     <appheader />
     <div class="row container-fluid">
-      <div class="col-6">
+      <div class="col-4 upload">
         <upload />
       </div>
-      <div class="col-6">
+      <div class="col-4">
+        <p>text</p>
+      </div>
+      <div class="col-4 color-list">
         <colorList />
       </div>
     </div>
@@ -28,8 +31,14 @@ export default {
 </script>
 
 <style>
-.container {
+.container-fluid {
   margin-top: 30px;
   overflow: auto;
+}
+.upload {
+  border: 2px solid white;
+}
+.color-list {
+  border: 2px solid white;
 }
 </style>

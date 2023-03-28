@@ -12,7 +12,5 @@ export default {
 h1 {
   padding-top: 30px;
   font-size: 70px;
-  font-family: "fewriter";
-  color: white;
 }
 </style>

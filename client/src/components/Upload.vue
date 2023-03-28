@@ -59,21 +59,20 @@ export default {
   display: flex;
   flex-grow: 1;
   align-items: center;
-  height: 100vh;
+  height: 80vh;
   justify-content: center;
   text-align: center;
 }
 
 .dropzone-container {
-  padding: 4rem;
-  background: #f7fafc;
-  border: 1px solid #e2e8f0;
+  /* padding: 4rem; */
+  background: transparent;
 }
 
 .hidden-input {
   opacity: 0;
-  overflow: hidden;
-  position: absolute;
+  /* overflow: hidden;
+  position: absolute; */
   width: 1px;
   height: 1px;
 }
@@ -82,6 +81,7 @@ export default {
   font-size: 20px;
   display: block;
   cursor: pointer;
+  color: white;
 }
 
 .preview-container {

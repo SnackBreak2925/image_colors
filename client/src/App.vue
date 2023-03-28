@@ -25,5 +25,7 @@ export default {
   text-align: center;
   width: 100%;
   height: 100vmin;
+  color: white;
+  font-family: "fewriter";
 }
 </style>
