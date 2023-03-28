@@ -4,15 +4,15 @@
 
 <script>
 export default {
-  name: 'Header',
-}
+  name: "Header",
+};
 </script>
 
 <style>
 h1 {
   padding-top: 30px;
   font-size: 70px;
-  font-family: 'fewriter';
+  font-family: "fewriter";
   color: white;
 }
 </style>

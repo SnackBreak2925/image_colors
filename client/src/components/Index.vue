@@ -1,23 +1,28 @@
 <template>
   <div>
-    <header>
-      <appheader />
-    </header>
-    <div class="container">
-      <upload />
+    <appheader />
+    <div class="row container-fluid">
+      <div class="col-6">
+        <upload />
+      </div>
+      <div class="col-6">
+        <colorList />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import Upload from './Upload.vue';
-import Header from './Header.vue';
+import Upload from "./Upload.vue";
+import Header from "./Header.vue";
+import Colors from "./Colors.vue";
 
 export default {
-  name: 'Index',
+  name: "Index",
   components: {
     appheader: Header,
     upload: Upload,
+    colorList: Colors,
   },
 };
 </script>
