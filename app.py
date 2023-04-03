@@ -19,5 +19,10 @@ def ping_pong():
     return jsonify('pong!')
 
 
+@app.route('/proccess_image', methods=['POST'])
+def colors():
+    return jsonify('pong!')
+
+
 if __name__ == '__main__':
     app.run()
