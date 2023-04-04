@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 # configuration
@@ -21,7 +21,11 @@ def ping_pong():
 
 @app.route('/proccess_image', methods=['POST'])
 def colors():
-    return jsonify('pong!')
+    if request.method == 'POST':
+        post_data = request.get_json()
+        print(post_data)
+        print(request.query_string)
+    # return jsonify('ponyaa!')
 
 
 if __name__ == '__main__':

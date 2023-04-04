@@ -22,8 +22,14 @@
       </label>
     </div>
   </div> -->
-  <label class="label">
-    <input type="file" class="input" name="" id="" />
+  <label
+    class="label"
+    v-bind="$attrs"
+    @drop.prevent="handleDrop"
+    @dragenter="entering = true"
+    @dragleave="entering = false"
+  >
+    <input type="file" class="input" @input="handleInput" />
     <span class="message">Drop or click to upload image</span>
   </label>
 </template>
@@ -53,7 +59,6 @@ export default {
   height: 100%;
   cursor: pointer;
 }
-
 .input {
   visibility: hidden;
   position: absolute;
@@ -62,14 +67,12 @@ export default {
   width: 100%;
   height: 100%;
 }
-
 .message {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
 .main {
   display: flex;
   flex-grow: 1;
@@ -78,12 +81,10 @@ export default {
   justify-content: center;
   text-align: center;
 }
-
 .dropzone-container {
   /* padding: 4rem; */
   background: transparent;
 }
-
 .hidden-input {
   opacity: 0;
   /* overflow: hidden;
@@ -91,26 +92,22 @@ export default {
   width: 1px;
   height: 1px;
 }
-
 .file-label {
   font-size: 20px;
   display: block;
   cursor: pointer;
   color: white;
 }
-
 .preview-container {
   display: flex;
   margin-top: 2rem;
 }
-
 .preview-card {
   display: flex;
   border: 1px solid #a2a2a2;
   padding: 5px;
   margin-left: 5px;
 }
-
 .preview-img {
   width: 50px;
   height: 50px;
