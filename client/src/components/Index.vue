@@ -1,12 +1,12 @@
 <template>
   <div>
     <appheader />
-    <div class="row container-fluid">
+    <div class="row">
       <div class="col-4 upload">
         <upload />
       </div>
       <div class="col-4">
-        <p>text</p>
+        <p>Play buntton</p>
       </div>
       <div class="col-4 color-list">
         <colorList />
@@ -31,14 +31,20 @@ export default {
 </script>
 
 <style>
-.container-fluid {
-  margin-top: 30px;
-  overflow: auto;
-}
 .upload {
   border: 2px solid white;
+  padding: 0;
 }
 .color-list {
   border: 2px solid white;
+  padding: 0;
+}
+.row {
+  margin-top: 30px;
+  height: 75vh;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 2vw;
+  padding-right: 2vw;
 }
 </style>

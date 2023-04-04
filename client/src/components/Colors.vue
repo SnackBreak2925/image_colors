@@ -1,6 +1,6 @@
 <template>
   <div>
-    text
+    List of colors
   </div>
 </template>
 

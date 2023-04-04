@@ -19,12 +19,10 @@ export default {
   margin: 0;
   background-image: url("~@/assets/background.png");
   background-repeat: repeat;
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  max-width: 100vw;
   width: 100%;
-  height: 100vmin;
+  height: 100vh;
   color: white;
   font-family: "fewriter";
 }

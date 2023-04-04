@@ -24,7 +24,7 @@
   </div> -->
   <label class="label">
     <input type="file" class="input" name="" id="" />
-    <span class="message"></span>
+    <span class="message">Drop or click to upload image</span>
   </label>
 </template>
 
@@ -47,33 +47,27 @@ export default {
 
 <style scoped>
 .label {
-  /* @apply relative transition-all ease-in-out duration-300 */
-  @apply relative transition-all ease-in-out duration-300 border border-gray-500 hover:bg-gray-400;
-  /* position: relative;
-  transition: all ease-in-out;
-  transition-duration: 300ms;
-  border: 2px white */
+  height: 60vh;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 }
 
 .input {
-  /* @apply absolute top-0 left-0 w-full h-full hidden */
-   @apply absolute top-0 left-0 w-full h-full hidden;
-  /* visibility: hidden;
+  visibility: hidden;
   position: absolute;
   top: 0px;
   left: 0px;
   width: 100%;
-  height: 100%; */
+  height: 100%;
 }
 
 .message {
-  /* @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 */
-  @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2; 
-  /* position: absolute;
+  position: absolute;
   top: 50%;
   left: 50%;
-  transform: translateX(50%);
-  transform: translateY(50%); */
+  transform: translate(-50%, -50%);
 }
 
 .main {
