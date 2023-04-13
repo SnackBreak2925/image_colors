@@ -1,8 +1,8 @@
 <template>
   <div class="main">
     <div
+      v-if="!files.length"
       class="label"
-      v-bind="$attrs"
       @dragover="dragover"
       @dragleave="dragleave"
       @drop="drop"
@@ -16,10 +16,20 @@
         ref="file"
         accept=".jpg,.jpeg,.png"
       />
-      <span class="message" for="fileInput">
+      <!-- TODO no flash -->
+      <label class="message" for="fileInput">
         <div v-if="isDragging">Release to drop files here.</div>
-        <div v-else>Drop files here or <u>click here</u> to upload.</div>
-      </span>
+        <div v-else>Перетащите или <u>нажмите сюда</u> чтобы загрузить файлы.</div>
+      </label>
+    </div>
+    <div class="label" v-else>
+      <div v-for="file in files" :key="file.name" class="preview-card">
+        <div>
+          <p>
+            {{ file.name }}
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -74,7 +84,6 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
-  cursor: pointer;
 }
 
 .input {
@@ -88,6 +97,7 @@ export default {
 
 .message {
   position: absolute;
+  cursor: pointer;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
