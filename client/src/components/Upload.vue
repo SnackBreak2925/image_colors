@@ -1,7 +1,8 @@
 <template>
-  <!-- <div class="main">
+  <div class="main">
     <div
-      class="dropzone-container"
+      class="label"
+      v-bind="$attrs"
       @dragover="dragover"
       @dragleave="dragleave"
       @drop="drop"
@@ -10,28 +11,17 @@
         type="file"
         name="file"
         id="fileInput"
-        class="hidden-input"
+        class="input"
         @change="onChange"
         ref="file"
         accept=".jpg,.jpeg,.png"
       />
-
-      <label for="fileInput" class="file-label">
+      <span class="message" for="fileInput">
         <div v-if="isDragging">Release to drop files here.</div>
         <div v-else>Drop files here or <u>click here</u> to upload.</div>
-      </label>
+      </span>
     </div>
-  </div> -->
-  <label
-    class="label"
-    v-bind="$attrs"
-    @drop.prevent="handleDrop"
-    @dragenter="entering = true"
-    @dragleave="entering = false"
-  >
-    <input type="file" class="input" @input="handleInput" />
-    <span class="message">Drop or click to upload image</span>
-  </label>
+  </div>
 </template>
 
 <script>
@@ -40,6 +30,11 @@ export default {
     return {
       isDragging: false,
       files: [],
+      currentImage: undefined,
+      previewImage: undefined,
+      progress: 0,
+      message: "",
+      imageInfos: [],
     };
   },
   methods: {
@@ -47,11 +42,33 @@ export default {
       this.files = [...this.$refs.file.files[0]];
       console.log(event);
     },
+    dragover(e) {
+      e.preventDefault();
+      this.isDragging = true;
+    },
+    dragleave() {
+      this.isDragging = false;
+    },
+    drop(e) {
+      e.preventDefault();
+      this.$refs.file.files = e.dataTransfer.files;
+      this.onChange();
+      this.isDragging = false;
+    },
   },
 };
 </script>
 
 <style scoped>
+.main {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  height: 100vh;
+  justify-content: center;
+  text-align: center;
+}
+
 .label {
   height: 60vh;
   position: relative;
@@ -59,6 +76,7 @@ export default {
   height: 100%;
   cursor: pointer;
 }
+
 .input {
   visibility: hidden;
   position: absolute;
@@ -67,12 +85,14 @@ export default {
   width: 100%;
   height: 100%;
 }
+
 .message {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 .main {
   display: flex;
   flex-grow: 1;
@@ -81,33 +101,36 @@ export default {
   justify-content: center;
   text-align: center;
 }
+
 .dropzone-container {
-  /* padding: 4rem; */
   background: transparent;
 }
+
 .hidden-input {
   opacity: 0;
-  /* overflow: hidden;
-  position: absolute; */
   width: 1px;
   height: 1px;
 }
+
 .file-label {
   font-size: 20px;
   display: block;
   cursor: pointer;
   color: white;
 }
+
 .preview-container {
   display: flex;
   margin-top: 2rem;
 }
+
 .preview-card {
   display: flex;
   border: 1px solid #a2a2a2;
   padding: 5px;
   margin-left: 5px;
 }
+
 .preview-img {
   width: 50px;
   height: 50px;
