@@ -23,7 +23,7 @@
         accept=".jpg,.jpeg,.png"
       />
       <label class="message" for="fileInput">
-        <div v-if="isDragging">Release to drop files here.</div>
+        <div v-if="isDragging">Отпустите кнопку мыщи чтобы загрузить файл.</div>
         <div v-else>Перетащите или <u>нажмите сюда</u> чтобы загрузить файлы.</div>
       </label>
     </div>
