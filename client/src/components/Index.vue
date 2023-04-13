@@ -6,7 +6,7 @@
         <upload />
       </div>
       <div class="col-4">
-        <p>Play buntton</p>
+        <play />
       </div>
       <div class="col-4 color-list">
         <colorList />
@@ -19,6 +19,7 @@
 import Upload from "./Upload.vue";
 import Header from "./Header.vue";
 import Colors from "./Colors.vue";
+import Play from "./Play.vue";
 
 export default {
   name: "Index",
@@ -26,6 +27,7 @@ export default {
     appheader: Header,
     upload: Upload,
     colorList: Colors,
+    play: Play,
   },
 };
 </script>
