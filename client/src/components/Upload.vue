@@ -1,7 +1,13 @@
 <template>
   <div class="main">
+    <div v-if="files.length > 1" class="top">
+      <p>Загрузке подлежит только <b>одно</b> изображение</p>
+      <button class="remove" type="button" @click="removeAll" title="Удалить все">
+        <b>Удалить все</b>
+      </button>
+    </div>
     <div
-      v-if="!files.length"
+      v-else-if="!files.length"
       class="label"
       @dragover="dragover"
       @dragleave="dragleave"
@@ -16,20 +22,16 @@
         ref="file"
         accept=".jpg,.jpeg,.png"
       />
-      <!-- TODO no flash -->
       <label class="message" for="fileInput">
         <div v-if="isDragging">Release to drop files here.</div>
         <div v-else>Перетащите или <u>нажмите сюда</u> чтобы загрузить файлы.</div>
       </label>
     </div>
-    <div class="label" v-else>
-      <div v-for="file in files" :key="file.name" class="preview-card">
-        <div>
-          <p>
-            {{ file.name }}
-          </p>
-        </div>
-      </div>
+    <div v-else class="preview-container">
+      <img :key="files[0].name" class="preview-img" :src="generateURL(files[0])" />
+      <button class="remove" type="button" @click="remove(0)" title="Удалить изображение">
+        <b>Удалить</b>
+      </button>
     </div>
   </div>
 </template>
@@ -48,9 +50,8 @@ export default {
     };
   },
   methods: {
-    onChange(event) {
-      this.files = [...this.$refs.file.files[0]];
-      console.log(event);
+    onChange() {
+      this.files = [...this.$refs.file.files];
     },
     dragover(e) {
       e.preventDefault();
@@ -65,6 +66,19 @@ export default {
       this.onChange();
       this.isDragging = false;
     },
+    remove(i) {
+      this.files.splice(i, 1);
+    },
+    removeAll(i) {
+      this.files = [];
+    },
+    generateURL(file) {
+      let fileSrc = URL.createObjectURL(file);
+      setTimeout(() => {
+        URL.revokeObjectURL(fileSrc);
+      }, 1000);
+      return fileSrc;
+    },
   },
 };
 </script>
@@ -72,9 +86,10 @@ export default {
 <style scoped>
 .main {
   display: flex;
-  flex-grow: 1;
   align-items: center;
-  height: 100vh;
+  position: relative;
+  flex-grow: 1;
+  height: 80vh;
   justify-content: center;
   text-align: center;
 }
@@ -103,49 +118,28 @@ export default {
   transform: translate(-50%, -50%);
 }
 
-.main {
-  display: flex;
-  flex-grow: 1;
-  align-items: center;
-  height: 80vh;
-  justify-content: center;
-  text-align: center;
-}
-
-.dropzone-container {
-  background: transparent;
-}
-
-.hidden-input {
-  opacity: 0;
-  width: 1px;
-  height: 1px;
-}
-
-.file-label {
-  font-size: 20px;
-  display: block;
-  cursor: pointer;
-  color: white;
-}
-
 .preview-container {
-  display: flex;
-  margin-top: 2rem;
-}
-
-.preview-card {
-  display: flex;
-  border: 1px solid #a2a2a2;
-  padding: 5px;
-  margin-left: 5px;
+  flex-direction: column;
+  height: 100%;
 }
 
 .preview-img {
-  width: 50px;
-  height: 50px;
-  border-radius: 5px;
-  border: 1px solid #a2a2a2;
-  background-color: #a2a2a2;
+  object-fit: contain;
+  height: 95%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+}
+
+.remove {
+  position: sticky;
+  top: 100%;
+  border: 2px solid white;
+  color: white;
+  background-color: rgba(0, 0, 0, 0);
 }
 </style>
