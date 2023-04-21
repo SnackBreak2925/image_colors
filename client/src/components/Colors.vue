@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     List of colors
     <font-awesome-icon :icon="['fas', 'paw']" />
   </div>

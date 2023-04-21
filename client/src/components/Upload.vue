@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="container">
     <div v-if="files.length > 1" class="top">
       <p>Загрузке подлежит только <b>одно</b> изображение</p>
       <button class="remove" type="button" @click="removeAll" title="Удалить все">
@@ -85,16 +85,6 @@ export default {
 </script>
 
 <style scoped>
-.main {
-  display: flex;
-  align-items: center;
-  position: relative;
-  flex-grow: 1;
-  height: 80vh;
-  justify-content: center;
-  text-align: center;
-}
-
 .label {
   height: 60vh;
   position: relative;

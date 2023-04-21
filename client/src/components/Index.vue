@@ -33,6 +33,16 @@ export default {
 </script>
 
 <style>
+.container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  flex-grow: 1;
+  height: 80vh;
+  justify-content: center;
+  text-align: center;
+}
+
 .upload {
   border: 2px solid white;
   padding: 0;
