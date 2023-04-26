@@ -2,13 +2,13 @@
   <div>
     <appheader />
     <div class="row">
-      <div class="col-4 upload">
+      <div class="col-4 bordered">
         <upload />
       </div>
       <div class="col-4">
         <play />
       </div>
-      <div class="col-4 color-list">
+      <div class="col-4 bordered">
         <colorList />
       </div>
     </div>
@@ -16,18 +16,18 @@
 </template>
 
 <script>
-import Upload from "./Upload.vue";
-import Header from "./Header.vue";
-import Colors from "./Colors.vue";
-import Play from "./Play.vue";
+import upload from "./Upload.vue";
+import appheader from "./Header.vue";
+import colorList from "./Colors.vue";
+import play from "./Play.vue";
 
 export default {
   name: "Index",
   components: {
-    appheader: Header,
-    upload: Upload,
-    colorList: Colors,
-    play: Play,
+    appheader,
+    upload,
+    colorList,
+    play,
   },
 };
 </script>
@@ -43,11 +43,7 @@ export default {
   text-align: center;
 }
 
-.upload {
-  border: 2px solid white;
-  padding: 0;
-}
-.color-list {
+.bordered {
   border: 2px solid white;
   padding: 0;
 }
