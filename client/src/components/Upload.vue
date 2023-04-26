@@ -1,7 +1,13 @@
 <template>
   <div class="container">
     <div v-if="files.length > 1" class="top">
-      <p>Загрузке подлежит только <b>одно</b> изображение</p>
+      <p>Загрузке подлежит только <b>один</b> файл</p>
+      <button class="remove" type="button" @click="removeAll" title="Удалить все">
+        <b>Удалить все</b>
+      </button>
+    </div>
+    <div v-else-if="files.length && checkFilesType" class="top">
+      <p>Загрузке подлежат только <b>изображения</b></p>
       <button class="remove" type="button" @click="removeAll" title="Удалить все">
         <b>Удалить все</b>
       </button>
@@ -66,6 +72,12 @@ export default {
       this.$refs.file.files = e.dataTransfer.files;
       this.onChange();
       this.isDragging = false;
+    },
+    checkFilesType() {
+      if (files[0]['type'] === 'image/jpeg')
+        return true
+      else
+        return false
     },
     remove(i) {
       this.files.splice(i, 1);
