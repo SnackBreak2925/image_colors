@@ -6,7 +6,7 @@
         <b>Удалить все</b>
       </button>
     </div>
-    <div v-else-if="files.length && checkFilesType" class="top">
+    <div v-else-if="files.length && checkFilesType()" class="top">
       <p>Загрузке подлежат только <b>изображения</b></p>
       <button class="remove" type="button" @click="removeAll" title="Удалить все">
         <b>Удалить все</b>
@@ -74,10 +74,8 @@ export default {
       this.isDragging = false;
     },
     checkFilesType() {
-      if (files[0]['type'] === 'image/jpeg')
-        return true
-      else
-        return false
+      if (/image/.test(this.files[0]["type"])) return false;
+      else return true;
     },
     remove(i) {
       this.files.splice(i, 1);
