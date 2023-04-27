@@ -11,12 +11,12 @@
     <div class="selecting">
       <p>Количество цветов</p>
       <!-- TODO change input of coloors -->
-      <select v-model="wannaColors">
-        <option :value="null"></option>
-        <option v-for="index in 15" :value="index">
+      <b-dropdown class="select-list" v-model="wannaColors">
+        <b-dropdown-item-button :value="null"></b-dropdown-item-button>
+        <b-dropdown-item-button v-for="index in 15" :value="index">
           {{ index }}
-        </option>
-      </select>
+        </b-dropdown-item-button>
+      </b-dropdown>
     </div>
   </div>
 </template>
@@ -67,8 +67,8 @@ export default {
   bottom: 20%;
 }
 
-.select-list {
+::v-deep .select-list {
   overflow: auto;
-  height: 20%;
+  height: 15%;
 }
 </style>
