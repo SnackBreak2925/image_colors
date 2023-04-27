@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import { mapMutations, mapActions, mapGetters } from 'vuex'
 export default {
   name: "Play",
   data() {
@@ -12,10 +13,14 @@ export default {
       counter: 0,
     };
   },
+  computed: {
+    ...mapGetters({mainCount: 'counts'}),
+  },
   methods: {
     play() {
-      console.log(this.counter);
-      this.counter++;
+      // console.log(this.counter);
+      // this.counter++;
+      console.log(this.mainCount)
     },
   },
 };
