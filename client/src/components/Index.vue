@@ -8,7 +8,7 @@
       <div class="col-4">
         <play />
       </div>
-      <div class="col-4 bordered">
+      <div class="col-4 bordered color-list">
         <colorList />
       </div>
     </div>
@@ -38,21 +38,21 @@ export default {
   align-items: center;
   position: relative;
   flex-grow: 1;
-  height: 80vh;
+  height: 100%;
   justify-content: center;
   text-align: center;
-}
-
-.bordered {
-  border: 2px solid white;
   padding: 0;
 }
+.bordered {
+  height: 80vh;
+  border: 2px solid white;
+}
 .row {
-  margin-top: 30px;
-  height: 75vh;
-  margin-left: 0;
-  margin-right: 0;
+  margin: 0;
   padding-left: 2vw;
   padding-right: 2vw;
+}
+.color-list {
+  padding-top: 15px;
 }
 </style>
