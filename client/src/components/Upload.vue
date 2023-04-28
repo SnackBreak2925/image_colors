@@ -12,22 +12,9 @@
         <b>Удалить все</b>
       </button>
     </div>
-    <div
-      v-else-if="!files.length"
-      class="label"
-      @dragover="dragover"
-      @dragleave="dragleave"
-      @drop="drop"
-    >
-      <input
-        type="file"
-        name="file"
-        id="fileInput"
-        class="input"
-        @change="onChange"
-        ref="file"
-        accept=".jpg,.jpeg,.png"
-      />
+    <div v-else-if="!files.length" class="label" @dragover="dragover" @dragleave="dragleave" @drop="drop">
+      <input type="file" name="file" id="fileInput" class="input" @change="onChange" ref="file"
+        accept=".jpg,.jpeg,.png" />
       <label class="message" for="fileInput">
         <div v-if="isDragging">Отпустите кнопку мыщи чтобы загрузить файл.</div>
         <div v-else>Перетащите или <u>нажмите сюда</u> чтобы загрузить файлы.</div>
@@ -35,7 +22,7 @@
     </div>
     <div v-else class="preview-container">
       <img :key="files[0].name" class="preview-img" :src="generateURL(files[0])" />
-      <button class="remove" type="button" @click="remove(0)" title="Удалить изображение">
+      <button class="remove" type="button" @click="removeAll" title="Удалить изображение">
         <b>Удалить</b>
       </button>
     </div>
@@ -43,6 +30,7 @@
 </template>
 
 <script>
+import { mapMutations, mapActions, mapGetters } from "vuex";
 export default {
   name: "Upload",
   data() {
@@ -56,7 +44,10 @@ export default {
       imageInfos: [],
     };
   },
+  computed: {
+  },
   methods: {
+    ...mapActions(["storeFile", "deleteFiles"]),
     onChange() {
       this.files = [...this.$refs.file.files];
     },
@@ -77,13 +68,12 @@ export default {
       if (/image/.test(this.files[0]["type"])) return false;
       else return true;
     },
-    remove(i) {
-      this.files.splice(i, 1);
-    },
     removeAll(i) {
       this.files = [];
+      this.deleteFiles();
     },
     generateURL(file) {
+      this.storeFile(file);
       let fileSrc = URL.createObjectURL(file);
       setTimeout(() => {
         URL.revokeObjectURL(fileSrc);

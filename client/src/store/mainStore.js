@@ -5,18 +5,25 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
-    count: 777
+    count: 777,
+    file: null
   },
   mutations: {
-    increment(state) {
-      state.count++
-    }
+    storeFile(state, file) {
+      state.file = file
+    },
+    deleteFiles(state) {
+      state.file = null
+    },
   },
-  methods: {
-    increment() {
-      this.$store.commit('increment')
-      console.log(this.$store.state.count)
-    }
+  actions: {
+    storeFile({ commit, state }, file) {
+      state.file = file
+      commit('storeFile', file)
+    },
+    deleteFiles({ commit, state }) {
+      commit('deleteFiles')
+    },
   },
   getters: {
     counts(state) {
