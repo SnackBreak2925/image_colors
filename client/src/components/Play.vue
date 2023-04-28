@@ -10,13 +10,12 @@
     </transition>
     <div class="selecting">
       <p>Количество цветов</p>
-      <!-- TODO change input of coloors -->
-      <b-dropdown class="select-list" v-model="wannaColors">
-        <b-dropdown-item-button :value="null"></b-dropdown-item-button>
-        <b-dropdown-item-button v-for="index in 15" :value="index">
-          {{ index }}
-        </b-dropdown-item-button>
-      </b-dropdown>
+      <b-form-select
+        size="sm"
+        class="dropdown-list"
+        v-model="wannaColors"
+        :options="dropOptions"
+      />
     </div>
   </div>
 </template>
@@ -29,6 +28,7 @@ export default {
     return {
       counter: 0,
       wannaColors: null,
+      dropOptions: [],
     };
   },
   computed: {
@@ -38,6 +38,15 @@ export default {
     play() {
       console.log(this.mainCount);
     },
+    setOptions() {
+      this.dropOptions.push({ value: null, text: "Выбрать" });
+      for (let i = 1; i <= 15; i++) {
+        this.dropOptions.push({ value: i, text: i });
+      }
+    },
+  },
+  beforeMount() {
+    this.setOptions();
   },
 };
 </script>
@@ -64,11 +73,17 @@ export default {
 .selecting {
   width: 50%;
   position: absolute;
-  bottom: 20%;
+  top: 0;
 }
 
-::v-deep .select-list {
-  overflow: auto;
-  height: 15%;
+.dropdown-list {
+  background: inherit;
+  color: inherit;
+  border: 2px solid white;
+}
+
+option {
+  color: white;
+  background: black;
 }
 </style>
