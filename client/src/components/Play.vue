@@ -5,7 +5,7 @@
         v-if="typeof wannaColors == 'number'"
         class="play-button"
         src="../assets/play_button.svg"
-        @click="play"
+        @click="sendFile"
       />
     </transition>
     <div class="selecting">
@@ -15,6 +15,7 @@
         class="dropdown-list"
         v-model="wannaColors"
         :options="dropOptions"
+        @change="setCountColors(wannaColors)"
       />
     </div>
   </div>
@@ -32,12 +33,10 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({ mainCount: "counts" }),
+    ...mapGetters(['getFile']),
   },
   methods: {
-    play() {
-      console.log(this.mainCount);
-    },
+    ...mapActions(['sendFile', 'setCountColors',]),
     setOptions() {
       this.dropOptions.push({ value: null, text: "Выбрать" });
       for (let i = 1; i <= 15; i++) {

@@ -16,10 +16,10 @@
 </template>
 
 <script>
-import upload from "./Upload.vue";
-import appheader from "./Header.vue";
-import colorList from "./Colors.vue";
-import play from "./Play.vue";
+import upload from "./Upload.vue"
+import appheader from "./Header.vue"
+import colorList from "./Colors.vue"
+import play from "./Play.vue"
 
 export default {
   name: "Index",

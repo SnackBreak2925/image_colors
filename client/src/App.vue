@@ -1,12 +1,18 @@
 <template>
-  <div id="app">
-    <router-view />
-  </div>
+  <b-overlay bg-color="transparent" spinner-variant="white" blur="20px" :show="isLoading" rounded="sm">
+    <div id="app">
+        <router-view />
+    </div>
+  </b-overlay>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "App",
+  computed: {
+    ...mapGetters(["isLoading"]),
+  },
 };
 </script>
 

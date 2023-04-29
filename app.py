@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+import time
 
 # configuration
 DEBUG = True
@@ -22,10 +23,26 @@ def ping_pong():
 @app.route('/proccess_image', methods=['POST'])
 def colors():
     if request.method == 'POST':
+        colors = [
+            '#567b89',
+            '#ffbaed',
+            '#a84532',
+            '#567b89',
+            '#67487d',
+            '#e0d6ff',
+            '#bad6f0',
+            '#567b89',
+            '#ffbaed',
+            '#a84532',
+            '#567b89',
+            '#67487d',
+            '#e0d6ff',
+            '#bad6f0',
+            '#bad6f0',
+        ]
         post_data = request.get_json()
         print(post_data)
-        print(request.query_string)
-    # return jsonify('ponyaa!')
+        return jsonify(colors[:post_data['countColor']])
 
 
 if __name__ == '__main__':

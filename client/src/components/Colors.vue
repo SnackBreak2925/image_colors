@@ -3,7 +3,7 @@
     <div class="row top">
       <h2>Список цветов</h2>
       <div class="label">
-        <p class="col-12 pull-left color-string" v-for="color in colors">
+        <p class="col-12 pull-left color-string" v-for="color in getColors">
           <font-awesome-icon :icon="['fas', 'paw']" :style='{ color: color }' />
           {{ color }}
         </p>
@@ -13,28 +13,17 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: "Colors",
   data() {
     return {
-      colors: [
-        '#567b89',
-        '#ffbaed',
-        '#a84532',
-        '#567b89',
-        '#67487d',
-        '#e0d6ff',
-        '#bad6f0',
-        '#567b89',
-        '#ffbaed',
-        '#a84532',
-        '#567b89',
-        '#67487d',
-        '#e0d6ff',
-        '#bad6f0',
-        '#bad6f0',
-      ]
     }
+  },
+  computed: {
+    ...mapGetters(['getColors',])
+  },
+  methods: {
   },
 }
 </script>

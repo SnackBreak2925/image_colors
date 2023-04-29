@@ -5,8 +5,10 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
-    count: 777,
-    file: null
+    file: null,
+    isLoading: false,
+    countColor: null,
+    colors: [],
   },
   mutations: {
     storeFile(state, file) {
@@ -15,19 +17,44 @@ export const store = new Vuex.Store({
     deleteFiles(state) {
       state.file = null
     },
+    sendFile(state) {
+      state.isLoading = true
+      let body = {
+        file: state.file,
+        countColor: state.countColor
+      }
+      Vue.http.post('http://localhost:5000/proccess_image', body).then((data) => {
+        state.colors = data.body
+        state.isLoading = false
+      })
+    },
+    setCountColors(state, countColor) {
+      state.countColor = countColor
+    }
   },
   actions: {
     storeFile({ commit, state }, file) {
-      state.file = file
       commit('storeFile', file)
     },
     deleteFiles({ commit, state }) {
       commit('deleteFiles')
     },
+    sendFile({ commit, state }) {
+      commit('sendFile')
+    },
+    setCountColors({ commit, state }, countColor) {
+      commit('setCountColors', countColor)
+    }
   },
   getters: {
-    counts(state) {
-      return state.count
+    isLoading(state) {
+      return state.isLoading
+    },
+    getColors(state) {
+      return state.colors
+    },
+    getFile(state) {
+      return state.file
     }
   }
 })
