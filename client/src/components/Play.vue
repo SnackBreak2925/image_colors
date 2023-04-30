@@ -2,7 +2,7 @@
   <div class="container play-element">
     <transition name="fade">
       <img
-        v-if="typeof wannaColors == 'number'"
+        v-if="typeof wannaColors == 'number' && getFile"
         class="play-button"
         src="../assets/play_button.svg"
         @click="sendFile"

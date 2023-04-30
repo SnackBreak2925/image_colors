@@ -12,9 +12,22 @@
         <b>Удалить все</b>
       </button>
     </div>
-    <div v-else-if="!files.length" class="label" @dragover="dragover" @dragleave="dragleave" @drop="drop">
-      <input type="file" name="file" id="fileInput" class="input" @change="onChange" ref="file"
-        accept=".jpg,.jpeg,.png" />
+    <div
+      v-else-if="!files.length"
+      class="label"
+      @dragover="dragover"
+      @dragleave="dragleave"
+      @drop="drop"
+    >
+      <input
+        type="file"
+        name="file"
+        id="fileInput"
+        class="input"
+        @change="onChange"
+        ref="file"
+        accept=".jpg,.jpeg,.png"
+      />
       <label class="message" for="fileInput">
         <div v-if="isDragging">Отпустите кнопку мыщи чтобы загрузить файл.</div>
         <div v-else>Перетащите или <u>нажмите сюда</u> чтобы загрузить файлы.</div>
@@ -44,8 +57,7 @@ export default {
       imageInfos: [],
     };
   },
-  computed: {
-  },
+  computed: {},
   methods: {
     ...mapActions(["storeFile", "deleteFiles"]),
     onChange() {
