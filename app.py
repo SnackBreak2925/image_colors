@@ -46,7 +46,7 @@ def colors():
         filename = 'some_image.jpg'
         with open(filename, 'wb') as f:
             f.write(imgdata)
-        # print(post_data)
+        print(post_data)
         return jsonify(colors[:post_data['countColor']])
 
 
