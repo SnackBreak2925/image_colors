@@ -5,17 +5,10 @@ import extcolors
 from handler import Handler
 import os
 
-# configuration
-DEBUG = True
-
-# instantiate the app
 app = Flask(__name__)
 app.config.from_object(__name__)
 
-# enable CORS
 CORS(app)
-
-# sanity check route
 
 
 @app.route('/ping', methods=['GET'])
