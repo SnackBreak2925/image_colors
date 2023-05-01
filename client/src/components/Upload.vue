@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { mapMutations, mapActions, mapGetters } from "vuex";
+import { mapActions } from "vuex";
 export default {
   name: "Upload",
   data() {

@@ -14,6 +14,8 @@ class Handler(object):
         resize_name = 'resize_' + input_name# новое имя: resize+старое имя
         return rgb_im,resize_name
 
+
+    @staticmethod
     def ColorsInHex(input):
         colors_pre_list = str(input).replace('([(', '').split(', (')[0:-1]
         df_rgb = [i.split('), ')[0] + ')' for i in colors_pre_list]
