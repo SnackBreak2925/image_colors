@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import time
+import base64
 
 # configuration
 DEBUG = True
@@ -41,7 +42,11 @@ def colors():
             '#bad6f0',
         ]
         post_data = request.get_json()
-        print(post_data)
+        imgdata = base64.b64decode(post_data['file'])
+        filename = 'some_image.jpg'
+        with open(filename, 'wb') as f:
+            f.write(imgdata)
+        # print(post_data)
         return jsonify(colors[:post_data['countColor']])
 
 

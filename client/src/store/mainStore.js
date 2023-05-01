@@ -20,17 +20,23 @@ export const store = new Vuex.Store({
     sendFile(state) {
       state.isLoading = true
       let body = {
-        file: state.file,
         countColor: state.countColor
       }
-      Vue.http.post('http://localhost:5000/proccess_image', body).then((data) => {
-        state.colors = data.body
-        state.isLoading = false
-      })
+
+      let reader = new FileReader()
+      reader.readAsDataURL(state.file)
+      reader.onload = () => {
+        body['file'] = reader.result
+        console.log(body)
+        Vue.http.post('http://localhost:5000/proccess_image', body).then((data) => {
+          state.colors = data.body
+          state.isLoading = false
+        })
+      }
     },
     setCountColors(state, countColor) {
       state.countColor = countColor
-    }
+    },
   },
   actions: {
     storeFile({ commit, state }, file) {
@@ -44,7 +50,7 @@ export const store = new Vuex.Store({
     },
     setCountColors({ commit, state }, countColor) {
       commit('setCountColors', countColor)
-    }
+    },
   },
   getters: {
     isLoading(state) {
