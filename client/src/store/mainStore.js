@@ -27,7 +27,6 @@ export const store = new Vuex.Store({
       reader.readAsDataURL(state.file)
       reader.onload = () => {
         body['file'] = reader.result.replace(/data:.*,/, '')
-        console.log(body)
         Vue.http.post('http://localhost:5000/proccess_image', body).then((data) => {
           state.colors = data.body
           state.isLoading = false
