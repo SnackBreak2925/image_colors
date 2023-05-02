@@ -26,9 +26,9 @@ def colors():
             f.write(imgdata)
         colors_x = extcolors.extract_from_path(
             filename, tolerance=10, limit=post_data['countColor'])
-        df_color = Handler.ColorsInHex(colors_x)
         os.remove(filename)
-        return jsonify(df_color['c_code'].values.tolist())
+        hex_array = Handler.ColorsInHex(colors_x)
+        return jsonify(hex_array)
 
 
 if __name__ == '__main__':

@@ -1,5 +1,5 @@
 from PIL import Image
-import pandas as pd
+import colorsys
 from colormap import rgb2hex
 
 class Handler(object):
@@ -17,13 +17,7 @@ class Handler(object):
 
     @staticmethod
     def ColorsInHex(input):
-        colors_pre_list = str(input).replace('([(', '').split(', (')[0:-1]
-        df_rgb = [i.split('), ')[0] + ')' for i in colors_pre_list]
-        df_percent = [i.split('), ')[1].replace(')', '') for i in colors_pre_list]
-
-        # переводим в HEX
-        df_color_up = [rgb2hex(int(i.split(", ")[0].replace("(", "")), int(i.split(", ")[1]),
-                               int(i.split(", ")[2].replace(")", ""))) for i in df_rgb]
-        # номер цвета, его хекс и сколько он занимает места
-        df = pd.DataFrame(zip(df_color_up, df_percent), columns=['c_code', 'occurence'])
-        return df
+        hexes = []
+        for i in input[0]:
+            hexes.append(rgb2hex(i[0][0], i[0][1], i[0][2]))
+        return hexes
