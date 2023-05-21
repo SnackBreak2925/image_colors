@@ -23,8 +23,6 @@ export default {
 }
 #app {
   margin: 0;
-  background-image: url("~@/assets/background.png");
-  background-repeat: repeat;
   text-align: center;
   max-width: 100vw;
   width: 100%;
