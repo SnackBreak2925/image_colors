@@ -50,11 +50,6 @@ export default {
     return {
       isDragging: false,
       files: [],
-      currentImage: undefined,
-      previewImage: undefined,
-      progress: 0,
-      message: "",
-      imageInfos: [],
     };
   },
   computed: {},
