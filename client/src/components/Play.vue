@@ -27,16 +27,15 @@ export default {
   name: "Play",
   data() {
     return {
-      counter: 0,
       wannaColors: null,
       dropOptions: [],
     };
   },
   computed: {
-    ...mapGetters(['getFile']),
+    ...mapGetters(["getFile"]),
   },
   methods: {
-    ...mapActions(['sendFile', 'setCountColors',]),
+    ...mapActions(["sendFile", "setCountColors"]),
     setOptions() {
       this.dropOptions.push({ value: null, text: "Выбрать" });
       for (let i = 1; i <= 15; i++) {

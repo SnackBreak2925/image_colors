@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-export const store = new Vuex.Store({
+const storeModule = {
   state: {
     file: null,
     isLoading: false,
@@ -62,4 +62,10 @@ export const store = new Vuex.Store({
       return state.file
     }
   }
-})
+}
+
+export default new Vuex.Store({
+  modules: {
+    storeModule,
+  },
+});

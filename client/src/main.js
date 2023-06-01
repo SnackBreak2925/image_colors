@@ -14,7 +14,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import { faPaw } from '@fortawesome/free-solid-svg-icons'
 
-import { store } from './store/mainStore'
+import store from './store/mainStore'
 
 library.add(faUserSecret, faPaw)
 
