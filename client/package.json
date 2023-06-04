@@ -23,7 +23,7 @@
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js",
-    "test": "jest"
+    "test": "jest --verbose"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
