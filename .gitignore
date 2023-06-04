@@ -1,3 +1,5 @@
 __pycache__
 node_modules
 environment
+.vscode
+.pytest_cache

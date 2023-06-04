@@ -20,6 +20,10 @@ def ping_pong():
 def colors():
     if request.method == 'POST':
         post_data = request.get_json()
+        if post_data.get('file') == None:
+            return "No file in response", 400
+        if post_data.get('countColor') == None:
+            return "No countColor in response", 400
         imgdata = base64.b64decode(post_data['file'])
         filename = 'some_image.jpg'
         with open(filename, 'wb') as f:
