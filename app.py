@@ -4,6 +4,7 @@ import base64
 import extcolors
 from handler import Handler
 import os
+from datetime import datetime
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -25,7 +26,7 @@ def colors():
         if post_data.get('countColor') == None:
             return "No countColor in response", 400
         imgdata = base64.b64decode(post_data['file'])
-        filename = 'some_image.jpg'
+        filename = f'{int(round(datetime.now().timestamp() * 1000))}.jpg'
         with open(filename, 'wb') as f:
             f.write(imgdata)
         colors_x = extcolors.extract_from_path(
@@ -36,4 +37,4 @@ def colors():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(threaded=False, processes=3)
